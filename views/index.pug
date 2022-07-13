@@ -1,5 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  header 
+    h1= 'Message Board'
+  main
+    .button-container
+      a(href=`http://localhost:${process.env.PORT || 3000}/new`): button.compose= "got something to say?"
+    each message in messages 
+      section.message-card 
+        h2= message.title
+        p.description= message.text
+        footer 
+          p.username= message.username
+          p.date= message.added
